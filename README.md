@@ -13,11 +13,11 @@ Students will be encouraged through this class to begin a practice of generative
 
 Here's a general break down of the 8 weeks (might be rearranged based on interests):
 
-LINES and DRAWING: Vera Molnar / Collette and Charles Bangert
-ANGLES: John & James Whitney / LIA
-REPETITION AND COMPUTATIONAL DESIGN: John Maeda / Muriel Cooper
-PATTERN:  Bridgette Riley
-PIXELS: Ken Knowlton
-IMAGES: Jason Salavon / Nancy Burson. 
-GLITCH / DEFORMATION: Rosa Menkman / Vesulkas
-MOVING IMAGE: Utterback and Achituv
+- LINES and DRAWING: Vera Molnar / Collette and Charles Bangert
+- ANGLES: John & James Whitney / LIA
+- REPETITION AND COMPUTATIONAL DESIGN: John Maeda / Muriel Cooper
+- PATTERN:  Bridgette Riley
+- PIXELS: Ken Knowlton
+- IMAGES: Jason Salavon / Nancy Burson. 
+- GLITCH / DEFORMATION: Rosa Menkman / Vesulkas
+- MOVING IMAGE: Utterback and Achituv
