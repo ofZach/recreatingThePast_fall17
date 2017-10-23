@@ -12,6 +12,8 @@ void ofApp::update(){
 
 }
 
+ofEasyCam cam;
+
 //--------------------------------------------------------------
 void ofApp::draw(){
 
@@ -38,79 +40,84 @@ void ofApp::draw(){
 
      }
     
+    //ofTranslate(500,500);
+
+    ofPoint center;
+    int count = 0;
+    for (int i = 0; i < lines.size(); i++){
+        for (int j = 0; j < lines[i].size(); j++){
+            center += lines[i][j];
+            count++;
+        }
+    }
+
+    center /= (float) count;
+    for (int i = 0; i < lines.size(); i++){
+        for (int j = 0; j < lines[i].size(); j++){
+            lines[i][j] -= center;
+        }
+    }
+
+    //ofRotateY(ofGetElapsedTimef()*50);
+
+    cam.enableOrtho();
+    cam.begin();
+    ofScale(1,-1,1);
+    for (int i = 0; i < lines.size(); i++){
+
+
+        for (int j = 0; j < lines[i].size(); j++){
+
+            float y = lines[i][j].x;
+
+            ofMatrix4x4 mat;
+            mat.makeRotationMatrix(ofGetElapsedTimef()*50 + sin(y*0.01 + ofGetElapsedTimef())*mouseX, ofPoint(0,1,0));
+
+            lines[i][j] = mat * lines[i][j];
+        }
+
+        lines[i].draw();
+    }
+    
+    cam.end();
+
 //    ofTranslate(300,300);
 //
-//    ofPoint center;
-//    int count = 0;
 //    for (int i = 0; i < lines.size(); i++){
-//        for (int j = 0; j < lines[i].size(); j++){
-//            center += lines[i][j];
-//            count++;
-//        }
-//    }
-//
-//    center /= (float) count;
-//    for (int i = 0; i < lines.size(); i++){
-//        for (int j = 0; j < lines[i].size(); j++){
-//            lines[i][j] -= center;
-//        }
-//    }
-//
-//    //ofRotateY(ofGetElapsedTimef()*50);
-//
-//    for (int i = 0; i < lines.size(); i++){
-//
-//
+//        //lines[i].draw();
 //        for (int j = 0; j < lines[i].size(); j++){
 //
-//            float y = lines[i][j].x;
+//            //ofLine(lines[i][j], lines[i][j] + ofPoint(mouseX,mouseY));
 //
-//            ofMatrix4x4 mat;
-//            mat.makeRotationMatrix(ofGetElapsedTimef()*50 + sin(y*0.01 + ofGetElapsedTimef())*mouseX, ofPoint(0,1,0));
+//            ofPoint a = lines[i][j] + ofPoint(mouseX,mouseY).getNormalized() * 0.1;
+//            ofPoint b = lines[i][j] + ofPoint(mouseX,mouseY);
 //
-//            lines[i][j] = mat * lines[i][j];
+//            for (int k = 0; k < lines.size(); k++){
+//                for (int l = 0; l < lines[k].size(); l++){
+//                    ofPoint c = lines[k][l];
+//                    ofPoint d = lines[k][(l+1) % lines[k].size()];
+//
+//                    ofPoint intersection;
+//                    if (ofLineSegmentIntersection(a, b, c, d, intersection)){
+//                        b = intersection;
+//                    }
+//                }
+//            }
+//
+//            ofLine(a,b);
+//
+//
+//
+//            //int j_p_1 = (j+1) % lines[i].size();
+//            //ofPoint a = lines[i][j];
+//            //ofPoint b = lines[i][j_p_1];
+//            //ofPoint diff = b - a;
+//            //diff = diff.getNormalized();
+//            //diff.rotate(90, ofPoint(0, 0, 1));
+//            //ofLine(a, a + diff * 10);
 //        }
 //
-//        lines[i].draw();
 //    }
-
-    ofTranslate(300,300);
-    
-    for (int i = 0; i < lines.size(); i++){
-        //lines[i].draw();
-        for (int j = 0; j < lines[i].size(); j++){
-            
-            //ofLine(lines[i][j], lines[i][j] + ofPoint(mouseX,mouseY));
-            
-            ofPoint a = lines[i][j] + ofPoint(mouseX,mouseY).getNormalized() * 0.1;
-            ofPoint b = lines[i][j] + ofPoint(mouseX,mouseY);
-            
-            for (int k = 0; k < lines.size(); k++){
-                for (int l = 0; l < lines[k].size(); l++){
-                    ofPoint c = lines[k][l];
-                    ofPoint d = lines[k][(l+1) % lines[k].size()];
-                    
-                    ofPoint intersection;
-                    if (ofLineSegmentIntersection(a, b, c, d, intersection)){
-                        b = intersection;
-                    }
-                }
-            }
-            
-            ofLine(a,b);
-            
-            
-            
-            //int j_p_1 = (j+1) % lines[i].size();
-            //ofPoint a = lines[i][j];
-            //ofPoint b = lines[i][j_p_1];
-            //ofPoint diff = b - a;
-            //diff = diff.getNormalized();
-            //diff.rotate(90, ofPoint(0, 0, 1));
-            //ofLine(a, a + diff * 10);
-        }
-        
-    }
     
     
     
